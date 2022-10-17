@@ -6,10 +6,19 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userContext } from "../../contexts/userContexts";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 const Register = () => {
-  const {userRegister} = useContext(userContext)
+  const {userRegister, redirectTo, userGetInfos} = useContext(userContext)
+  
+
+  useEffect(() => {
+    if (localStorage.getItem("@kh_id")) {
+      userGetInfos(localStorage.getItem("@kh_id"));
+      redirectTo("dashboard");
+    }
+  }, [localStorage.getItem("@kh_id")]);
+
   // const {apiResquestRegister} = useNavegation()
   const formSchema = yup.object().shape({
     name: yup.string().required("Insira seu nome"),
