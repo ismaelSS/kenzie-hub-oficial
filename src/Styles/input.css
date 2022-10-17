@@ -1,0 +1,23 @@
+.input-Default{
+    background-color: var(--grey-2);
+        color: var(--grey-0);
+
+        height: 48px;
+        width: 100%;
+        max-width: calc(100% - 28px);
+
+        padding: 0 13px;
+
+        border: none;
+        border-radius: 4px;
+
+        outline: none;
+
+        margin-bottom: 22px;
+        margin-top: 18px;
+}
+
+.label-default{
+    font-size: 10px;
+    color: var(--grey-0);
+}

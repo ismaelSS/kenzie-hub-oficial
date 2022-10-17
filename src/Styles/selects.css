@@ -1,0 +1,15 @@
+.select-default{
+    height: 48px;
+    border:none;
+    border-radius: 4px;
+    width: 100%;
+    outline: none;
+    background-color: var(--grey-2);
+
+    font-size:13px;
+    width: 400;
+    color:var(--grey-1);
+
+    padding: 0 15px 0 13px;
+
+}

@@ -1,0 +1,48 @@
+.title1{
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.title2{
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.title3{
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--grey-0);
+}
+
+.font1{
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.font2{
+    font-weight: 500;
+    font-size: 12px; 
+}
+
+.font3{
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--grey-1);
+}
+
+.font1-grey{
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--grey-1);
+}
+
+.font3{
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--grey-1);
+}
+
+.error-input{
+    color:var(--color-negative);
+    margin-left: 10px;
+}
