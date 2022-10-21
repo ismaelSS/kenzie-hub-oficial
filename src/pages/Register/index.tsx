@@ -5,7 +5,7 @@ import logo from "../../assets/img/Logo.svg";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { userContext } from "../../contexts/userContexts";
+import { IDataRegister, userContext } from "../../contexts/userContexts";
 import { useContext, useEffect } from "react";
 
 const Register = () => {
@@ -17,6 +17,7 @@ const Register = () => {
       userGetInfos(localStorage.getItem("@kh_id"));
       redirectTo("dashboard");
     }
+    
   }, [localStorage.getItem("@kh_id")]);
 
   // const {apiResquestRegister} = useNavegation()
@@ -40,11 +41,11 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IDataRegister>({
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmitFunction = (data) => {
+  const onSubmitFunction = (data:IDataRegister) => {
     userRegister(data);
   };
 

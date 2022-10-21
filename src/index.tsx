@@ -13,7 +13,7 @@ import RoutesPages from "./routes";
 import { UserProvider } from "./contexts/userContexts";
 import {TechsProvider } from "./contexts/TechsContexts";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>

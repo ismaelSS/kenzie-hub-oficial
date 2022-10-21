@@ -7,7 +7,9 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import { DivInputPassaword } from "./passwordImput/styles";
 import logo from "../../assets/img/Logo.svg";
-import { userContext } from "../../contexts/userContexts";
+import { IDataLogin, userContext } from "../../contexts/userContexts";
+
+
 
 const Login = () => {
   const { userLogin, redirectTo, userGetInfos } = useContext(userContext);
@@ -29,9 +31,9 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(formSchema) });
+  } = useForm<IDataLogin>({ resolver: yupResolver(formSchema) });
 
-  const onSubmitFunction = (data) => {
+  const onSubmitFunction = (data: IDataLogin)=> {
     userLogin(data);
   };
 

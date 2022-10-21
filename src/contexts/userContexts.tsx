@@ -1,19 +1,48 @@
-import { createContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { toastSucess, toastError } from "../toast/toasmodels";
 
-export const userContext = createContext({});
+export type IDataLogin = {
+  email: string;
+  password: string;
+}
 
-export const UserProvider = ({ children }) => {
+type IStrNull = string | null;
+
+export type IDataRegister = {
+  name:string;
+  email:string;
+  password:string;
+  confirme_password:string;
+  bio:string;
+  contact:string;
+  course_module:string;
+}
+
+interface UserProviderProps{
+  children:ReactNode
+}
+
+interface IUserContext{
+  userLogin: (data:IDataLogin) => void;
+  redirectTo: (str:string) => void;
+  userRegister: (data: IDataRegister) => void;
+  userGetInfos: (id:IStrNull) => void;
+  userInfos:string;
+}
+
+export const userContext = createContext<IUserContext>({} as IUserContext);
+
+export const UserProvider = ({ children }:UserProviderProps) => {
   const navigate = useNavigate();
   const [userInfos, setUserInfos] = useState("");
 
-  const redirectTo = (str) => {
+  const redirectTo = (str:string) => {
     navigate(`/${str}`);
   };
 
-  const userLogin = (data) => {
+  const userLogin = (data:IDataLogin) => {
     api
       .post("/sessions", data)
       .then((response) => {
@@ -32,7 +61,7 @@ export const UserProvider = ({ children }) => {
       .catch((error) => toastError("email e/ou senha incorretos"));
   };
 
-  const userRegister = (data) => {
+  const userRegister = (data:IDataRegister) => {
     api
       .post("/users", data)
       .then((resp) => {
@@ -42,7 +71,7 @@ export const UserProvider = ({ children }) => {
       .catch((error) => toastError("Dados invalidos tente novamente"));
   };
 
-  const userGetInfos = (id) => {
+  const userGetInfos = (id:IStrNull) => {
     api
       .get(`/users/${id}`)
       .then((resp) => {
