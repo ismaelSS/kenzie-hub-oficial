@@ -2,13 +2,15 @@ import { ModalAddDiv } from "./styles";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { TechsContexts } from "../../contexts/TechsContexts";
+import { IDataTechs, TechsContexts } from "../../contexts/TechsContexts";
 import { useContext } from "react";
+import { userContext } from "../../contexts/userContexts";
 
 export const ModalAddTech = () => {
   
   const { registerTech } = useContext(TechsContexts);
   const {setDisplayModalAdd, displayModalAdd} = useContext(TechsContexts);
+  const { tokenLocal } = useContext(userContext)
 
   const formSchema = yup.object().shape({
     title: yup.string().required("insira a tecnologia"),
@@ -19,12 +21,12 @@ export const ModalAddTech = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IDataTechs>({
     resolver: yupResolver(formSchema)
   });
 
-  const onSubmitFunction = (data) => {
-    registerTech(data, localStorage.getItem("@kh_token"));
+  const onSubmitFunction = (data: IDataTechs) => {
+    registerTech(data, tokenLocal);
   };
 
   return (

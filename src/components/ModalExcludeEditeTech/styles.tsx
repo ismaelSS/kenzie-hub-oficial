@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
+interface IModalExcludeEditeTechDiv {
+    displayModalExcludeEdite:string;
+}
 
-export const ModalExcludeEditeTechDiv = styled.div`
+export const ModalExcludeEditeTechDiv = styled.div<IModalExcludeEditeTechDiv>`
 height:100vh;
 width:100vw;
 

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const ModalAddDiv = styled.div`
+interface IModalDivProps {
+    displayModalAdd: string
+}
+
+export const ModalAddDiv = styled.div<IModalDivProps>`
 
 height:100vh;
 width:100vw;

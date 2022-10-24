@@ -1,25 +1,25 @@
 import { useContext } from "react"
 import { TechsContexts } from "../../contexts/TechsContexts"
-import { userContext } from "../../contexts/userContexts"
+import { ITech, userContext } from "../../contexts/userContexts"
 import { ShowTechsDiv } from "./styles"
 
 
 export const ShowTechs = () =>{
     const {userInfos} = useContext(userContext)
     const {setTechId, setDisplayModalExcludeEdite, setTechName} = useContext(TechsContexts);
-    const userTechs = userInfos.techs;
+    const userTechs = userInfos?.techs;
     
     return(
     <ShowTechsDiv>
         <ul>
             {
                 userTechs ? 
-                userTechs.map((tech, techIndex) => (
+                userTechs.map((tech: ITech, techIndex: number) => (
                     <li 
                     id={tech.id} 
                     key={techIndex}
                     onClick={(e)=> { 
-                        setTechId(e.target.id);
+                        setTechId(tech.id);
                         setDisplayModalExcludeEdite('flex');
                         setTechName(tech.title)
                     }}>

@@ -19,7 +19,6 @@ export const ShowTechsDiv = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
-    /* justify-content:center; */
 
     padding: 23px 0;
     gap:16px;

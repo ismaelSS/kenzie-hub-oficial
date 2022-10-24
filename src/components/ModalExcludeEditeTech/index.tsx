@@ -1,12 +1,14 @@
 import { useContext } from "react";
-import { TechsContexts } from "../../contexts/TechsContexts";
+import { IDataTechs, TechsContexts } from "../../contexts/TechsContexts";
 import { ModalExcludeEditeTechDiv } from "./styles";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { userContext } from "../../contexts/userContexts";
 
 export const ModalExcludeEditeTech = () => {
   const {techName} = useContext(TechsContexts)
+  const { tokenLocal } = useContext(userContext)
 
   const {
     editeTech,
@@ -24,12 +26,12 @@ export const ModalExcludeEditeTech = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IDataTechs>({
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmitFunction = (data) => {
-    editeTech(data, localStorage.getItem("@kh_token"), techId);
+  const onSubmitFunction = (data: IDataTechs) => {
+    editeTech(data, tokenLocal, techId);
   };
 
   return (
@@ -72,7 +74,7 @@ export const ModalExcludeEditeTech = () => {
             <button
               className="button-grey button-exclude"
               onClick={() => {
-                excludeTech(localStorage.getItem("@kh_token"));
+                excludeTech(tokenLocal);
                 setDisplayModalExcludeEdite("none");
               }}
             >
